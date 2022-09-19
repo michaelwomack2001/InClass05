@@ -5,13 +5,20 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 import edu.uncc.inclass05.R;
 import edu.uncc.inclass05.databinding.FragmentAppCategoriesBinding;
+import edu.uncc.inclass05.models.DataServices;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,6 +27,9 @@ import edu.uncc.inclass05.databinding.FragmentAppCategoriesBinding;
  */
 public class AppCategoriesFragment extends Fragment {
     FragmentAppCategoriesBinding binding;
+    ArrayList<String> appCategoryList = new ArrayList<String>();
+    ArrayAdapter<String> adapter;
+    ListView appCategoryLv;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -64,8 +74,14 @@ public class AppCategoriesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = FragmentAppCategoriesBinding.inflate(inflater, container, false);
-        return binding.getRoot();
+        View appCategoryFragment = inflater.inflate(R.layout.fragment_app_categories, container, false);
+
+        appCategoryList = DataServices.getAppCategories();
+        adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_expandable_list_item_1, appCategoryList);
+        appCategoryLv = appCategoryFragment.findViewById(R.id.appCategories);
+        appCategoryLv.setAdapter(adapter);
+
+        return appCategoryFragment;
     }
 
     @Override
