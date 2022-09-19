@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">InClass05</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcomeLbl">Welcome</string>
+    <string name="genreLbl">Genres</string>
+    <string name="releaseDateLbl">Release Date here</string>
+    <string name="artistName">Artist Name here</string>
+    <string name="appNameLbl">App name here</string>
+</resources>
