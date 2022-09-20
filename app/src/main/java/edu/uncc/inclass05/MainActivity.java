@@ -18,6 +18,11 @@ public class MainActivity extends AppCompatActivity implements AppCategoriesFrag
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+
+    }
+    public void onResume() {
+        super.onResume();
         setTitle("App Categories");
     }
 
@@ -41,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements AppCategoriesFrag
     public void setActionBarTitle(String title) {
         getSupportActionBar().setTitle(title);
     }
+
 
 
 }

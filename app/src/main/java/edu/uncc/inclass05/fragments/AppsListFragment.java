@@ -89,6 +89,11 @@ public class AppsListFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity) getActivity()).setActionBarTitle(mCategory);
+    }
 
     public interface AppListListener{
         void sendSelectedApp(DataServices.App app);
@@ -102,9 +107,5 @@ public class AppsListFragment extends Fragment {
         mListener = (AppListListener) context;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        ((MainActivity) getActivity()).setActionBarTitle("Top Paid Apps");
-    }
+
 }
