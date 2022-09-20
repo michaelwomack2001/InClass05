@@ -9,44 +9,35 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import edu.uncc.inclass05.MainActivity;
 import edu.uncc.inclass05.R;
 import edu.uncc.inclass05.databinding.FragmentAppDetailsBinding;
+import edu.uncc.inclass05.models.DataServices;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AppDetailsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class AppDetailsFragment extends Fragment {
     FragmentAppDetailsBinding binding;
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    ArrayList<String> genresList = new ArrayList<>();
+    ArrayAdapter<String> adapter;
+    ListView listView;
+
+    private static final String ARG_PARAM_APP = "param-app";
+    private DataServices.App mApp;
 
     public AppDetailsFragment() {
         // Required empty public constructor
     }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AppDetailsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static AppDetailsFragment newInstance(String param1, String param2) {
+    public static AppDetailsFragment newInstance(DataServices.App app) {
         AppDetailsFragment fragment = new AppDetailsFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putSerializable(ARG_PARAM_APP, app);
         fragment.setArguments(args);
         return fragment;
     }
@@ -55,8 +46,7 @@ public class AppDetailsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mApp = (DataServices.App) getArguments().getSerializable(ARG_PARAM_APP);
         }
     }
 
@@ -65,11 +55,36 @@ public class AppDetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentAppDetailsBinding.inflate(inflater, container, false);
+
         return binding.getRoot();
     }
+
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        TextView appName = view.findViewById(R.id.appNameLbl);
+        TextView artistName = view.findViewById(R.id.artistName);
+        TextView releaseDate = view.findViewById(R.id.releaseDateLbl);
+
+
+        genresList = mApp.getGenres();
+        adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_expandable_list_item_1, genresList);
+        listView = view.findViewById(R.id.genreList);
+        listView.setAdapter(adapter);
+
+
+
+        appName.setText(mApp.getName());
+        artistName.setText(mApp.getArtistName());
+        releaseDate.setText(mApp.getReleaseDate());
+
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity) getActivity()).setActionBarTitle("App Details");
     }
 }

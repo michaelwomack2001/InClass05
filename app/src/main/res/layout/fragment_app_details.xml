@@ -15,8 +15,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.76" />
+        app:layout_constraintTop_toBottomOf="@+id/releaseDateLbl"
+        app:layout_constraintVertical_bias="0.92" />
 
     <TextView
         android:id="@+id/appNameLbl"
@@ -25,9 +25,9 @@
         android:layout_marginStart="176dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="177dp"
-        android:layout_marginBottom="30dp"
         android:text="@string/appNameLbl"
-        app:layout_constraintBottom_toTopOf="@+id/artistName"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -36,11 +36,8 @@
         android:id="@+id/artistName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginEnd="177dp"
-        android:layout_marginBottom="34dp"
+        android:layout_marginTop="16dp"
         android:text="@string/artistName"
-        app:layout_constraintBottom_toTopOf="@+id/releaseDateLbl"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appNameLbl" />
@@ -49,25 +46,21 @@
         android:id="@+id/releaseDateLbl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginEnd="177dp"
+        android:layout_marginTop="16dp"
         android:text="@string/releaseDateLbl"
-        app:layout_constraintBottom_toTopOf="@+id/genreList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/artistName" />
 
     <TextView
         android:id="@+id/genreLbl"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="196dp"
-        android:layout_marginEnd="333dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="128dp"
         android:text="@string/genreLbl"
-        app:layout_constraintBottom_toTopOf="@+id/genreList"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.583"
+        android:textSize="15sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

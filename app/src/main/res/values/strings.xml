@@ -7,4 +7,6 @@
     <string name="releaseDateLbl">Release Date here</string>
     <string name="artistName">Artist Name here</string>
     <string name="appNameLbl">App name here</string>
+    <string name="welcome">Welcome</string>
+    <string name="appName">App Name</string>
 </resources>

@@ -1,5 +1,6 @@
 package edu.uncc.inclass05.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -7,10 +8,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -26,10 +29,12 @@ import edu.uncc.inclass05.models.DataServices;
  * create an instance of this fragment.
  */
 public class AppCategoriesFragment extends Fragment {
+
     FragmentAppCategoriesBinding binding;
     ArrayList<String> appCategoryList = new ArrayList<String>();
     ArrayAdapter<String> adapter;
     ListView appCategoryLv;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -81,11 +86,42 @@ public class AppCategoriesFragment extends Fragment {
         appCategoryLv = appCategoryFragment.findViewById(R.id.appCategories);
         appCategoryLv.setAdapter(adapter);
 
+        appCategoryLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                String services = appCategoryList.get(position);
+                Log.d("demo", String.valueOf(position)+services);
+                categoryInt.gotoListFrag1(services);
+
+
+
+            }
+        });
+
         return appCategoryFragment;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+    }
+
+
+    CategoryInt categoryInt;
+    public interface CategoryInt{
+        void gotoListFrag1(String dataParse);
+        }
+
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+        if (context instanceof CategoryInt) {
+            categoryInt = (CategoryInt) context;
+        } else {
+            throw new RuntimeException(context.toString() + "must implement CategoryInt");
+        }
+
     }
 }
